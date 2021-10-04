@@ -1,11 +1,19 @@
+/******* Dependencies */
+const Task = require("../models/tasks");
+
 /********** Get all tasks */
 const getAllTasks = (req, res) => {
   res.send("all tasks");
 };
 
 /********** Post task */
-const createTask = (req, res) => {
-  res.send("post task");
+const createTask = async (req, res) => {
+  try {
+    const task = await Task.create(req.body);
+    res.status(201).json({ task });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 /********** Get a task */
