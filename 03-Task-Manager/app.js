@@ -6,6 +6,7 @@ require("dotenv").config();
 const app = express();
 
 /****** Middlewares ******/
+app.use(express.static("./public"));
 app.use(express.json());
 
 /******** Routes *******/
