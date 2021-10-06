@@ -1,5 +1,6 @@
 /********** Dependencies */
 require("dotenv").config();
+require("express-async-errors");
 const express = require("express");
 const connectDB = require("./DB/connectDB");
 const notFound = require("./middlewares/not-found");
@@ -24,7 +25,7 @@ app.use("/api/v1/products", products);
 app.use(notFound);
 app.use(errorHandler);
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 const start = async () => {
   try {
