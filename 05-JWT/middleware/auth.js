@@ -1,10 +1,10 @@
-const CustomAPIError = require("../errors/custom-error");
+const { unAuthenticatedError } = require("../errors");
 const jwt = require("jsonwebtoken");
 
 const authenticationMiddleware = async (req, res, next) => {
   const { authorization } = req.headers;
   if (!authorization || !authorization.startsWith("Bearer ")) {
-    throw new CustomAPIError("Authentication failure", 401);
+    throw new unAuthenticatedError("Authentication failure");
   }
 
   //   get token
@@ -15,7 +15,7 @@ const authenticationMiddleware = async (req, res, next) => {
     req.user = { username, id };
     next();
   } catch (error) {
-    throw new CustomAPIError("Authentication failure", 401);
+    throw new unAuthenticatedError("Authentication failure");
   }
 };
 
